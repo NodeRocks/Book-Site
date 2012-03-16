@@ -4,8 +4,9 @@
   , "private": true
   , "dependencies": {
       "express": "2.5.8"
-    , "stylus": ">= 0.0.1"
-    , "jade": ">= 0.20.3"
-    , "coffee-script": ">=1.2.0"
+    , "coffee-script": "latest"
+    , "jade": "latest"
+    , "stylus": "latest"
+    , "nib": "latest"
   }
 }

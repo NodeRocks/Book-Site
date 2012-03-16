@@ -1,0 +1,15 @@
+!!! 5
+html
+	head
+		title= title
+		//- link(rel='stylesheet', href='/stylesheets/main.css')
+		script(src='http://a.vimeocdn.com/js/froogaloop2.min.js')
+		script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js")
+		script(src='/javascripts/player.js')
+
+		//if lt IE 9
+			script(src = "http//html5shiv.googlecode.com/svn/trunk/html5.js")
+		!= partial('google_analytics')
+	body
+		iframe#player(src="http://player.vimeo.com/video/25017978?api=1", width="500", height="281", frameborder="0")
+		input.play(type='button', value='play me')

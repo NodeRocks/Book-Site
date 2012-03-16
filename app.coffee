@@ -4,6 +4,8 @@ Module dependencies.
 
 express = require 'express'
 routes = require './routes'
+nib = require 'nib'
+stylus = require 'stylus'
 
 app = module.exports = express.createServer()
 
@@ -16,7 +18,15 @@ app.configure ->
   app.use express.methodOverride()
   app.use express.cookieParser()
   app.use express.session { secret: 'your secret here' }
-  app.use require('stylus').middleware { src: __dirname + '/public' }
+  app.use require('stylus').middleware { src: __dirname + '/public', compile: (str, path)->
+    return stylus(str)
+      .set('filename', path)
+      .set('compress', true)
+      .use(nib())
+  }
+
+  app.use express.compiler(src: __dirname + '/public', enable: ['coffeescript'])
+
   app.use app.router
   app.use express.static __dirname + '/public'
 
@@ -29,6 +39,9 @@ app.configure 'production', ->
 # Routes
 
 app.get '/', routes.index
+app.get '/player', routes.player
+
+# Start Server
 
 port = process.env.PORT || 3000
  
